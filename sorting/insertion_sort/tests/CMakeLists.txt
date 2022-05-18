@@ -13,17 +13,23 @@ include_directories(googletest/googletest/include)
 include_directories(${PROJECT_SOURCE_DIR}/include/)
 
 include(CTest) # Include testing cmake package.
-set(TEST_BINARY ${PROJECT_NAME}_test)
 
-add_executable(${TEST_BINARY} test_insertion_sort.cpp)
+foreach(SOURCEFILE insertion_sort; reverse_insertion_sort)
+    set(TEST_BINARY ${SOURCEFILE}_test)
+    add_executable(${TEST_BINARY} test_${SOURCEFILE}.cpp)
+    
+    target_link_libraries(${TEST_BINARY}
+        ${LIBRARY_OUTPUT_NAME}
+        gtest gtest_main
+    )
 
-target_link_libraries(${TEST_BINARY}
-    insertion_sort
-    gtest gtest_main
-)
+    add_test(
+        NAME test_${SOURCEFILE}            # Enables: $ ctest -N -E reverse  <Exclude>     or   $ ctest -N -R reverse   <Include>
+        COMMAND ${EXECUTABLE_OUTPUT_PATH}/${TEST_BINARY}
+        WORKING_DIRECTORY ${EXECUTABLE_OUTPUT_PATH} 
+    )
 
-add_test(
-    NAME test_insertion_sort
-    COMMAND ${EXECUTABLE_OUTPUT_PATH}/${TEST_BINARY}
-    WORKING_DIRECTORY ${EXECUTABLE_OUTPUT_PATH} 
-)
+endforeach()
+
+
+

@@ -13,3 +13,14 @@ void insertion_sort(int* arr, int size){
     arr[j+1] = key;
   }
 }
+
+
+//  c++ -g -I../include/ insertion_sort.cpp 
+//  gdb a.out 
+
+
+// int main(){
+//   int arr[]{3,2,5,3,6,1};
+//   insertion_sort(arr, 6);
+//   return 0;
+// }

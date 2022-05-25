@@ -15,7 +15,8 @@ void merge(int* arr, int leftStart, int leftEnd, int rightEnd){
 
   int li{0};
   int ri{0};
-  for (int i{leftStart}; i<rightEnd; ++i){
+  int i{leftStart};
+  while (true){
     if (li < leftSize && ri < rightSize){
       leftArr[li] <= rightArr[ri] ? ((arr[i] = leftArr[li]), ++li) : ( (arr[i] = rightArr[ri]), ++ri); 
     } else if (li == leftSize && ri == rightSize){
@@ -23,13 +24,13 @@ void merge(int* arr, int leftStart, int leftEnd, int rightEnd){
     } else if (li == leftSize) {
       arr[i] = rightArr[ri];
       ++ri;
-    } else if (ri == rightSize) {
+    } else if (ri == rightSize && li != leftSize) {
       arr[i] = leftArr[li];
       ++li;
     } else {
       arr = nullptr; // here be dragons
     }
-
+    ++i;
   }
 
 }

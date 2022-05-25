@@ -14,7 +14,10 @@ include_directories(${PROJECT_SOURCE_DIR}/include/)
 
 include(CTest) # Include testing cmake package.
 
-foreach(SOURCEFILE insertion_sort; reverse_insertion_sort)
+foreach(SOURCEFILE 
+            insertion_sort; 
+            reverse_insertion_sort;
+            custom_insertion_sort)
     set(TEST_BINARY ${SOURCEFILE}_test)
     add_executable(${TEST_BINARY} test_${SOURCEFILE}.cpp)
     

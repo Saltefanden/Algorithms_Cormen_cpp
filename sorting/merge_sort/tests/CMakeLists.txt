@@ -17,6 +17,7 @@ include(CTest) # Include testing cmake package.
 foreach(SOURCEFILE 
             merge;
             merge_sort;
+            time_merge_sort;
             )
     set(TEST_BINARY ${SOURCEFILE}_test)
     add_executable(${TEST_BINARY} test_${SOURCEFILE}.cpp)

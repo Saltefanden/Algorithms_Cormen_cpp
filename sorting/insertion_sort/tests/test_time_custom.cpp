@@ -4,7 +4,7 @@
 #include<algorithm>
 
 TEST(Time, Big){
-  constexpr int arr_size{1'000'000'000};
+  constexpr int arr_size{100'000'000};
   int* arr = new int[arr_size];
   custom_insertion_sort(arr, arr_size);
   if (false){

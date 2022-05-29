@@ -28,26 +28,16 @@ void merge(int arr[], int startidx, int mididx, int endidx){
 
 void merge(int arr[], int startidx, int mididx, int endidx, int copyArr[]){
 
-  int arrSize{endidx - startidx};
-  
-  for (int i{}; i<arrSize; ++i){
-    copyArr[i] = arr[startidx+i];
-  }
-
-  int copyStartidx{startidx - startidx};
-  int copyMididx{mididx - startidx};
-  int copyEndidx{endidx - startidx};
-
-  int li{copyStartidx};
-  int ri{copyMididx};
+  int li{startidx};
+  int ri{mididx};
   int i{startidx};
-  while (li < copyMididx && ri < copyEndidx){
+  while (li < mididx && ri < endidx){
       copyArr[li] <= copyArr[ri] ? (arr[i++] = copyArr[li++]) : (arr[i++] = copyArr[ri++]);
   }
-  while (li < copyMididx){
+  while (li < mididx){
     arr[i++] = copyArr[li++];
   }
-  while (ri < copyEndidx){
+  while (ri < endidx){
     arr[i++] = copyArr[ri++];
   }
 }

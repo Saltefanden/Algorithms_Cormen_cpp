@@ -81,3 +81,34 @@ TEST(Merging, size2){
     EXPECT_EQ(arr[i], vec[i]) << " with i="<<i; 
   } 
 }
+
+TEST(CopyArray, WorstAppend){
+  int arr[]{100,200,300, 400, 500, 600, 700, 0, 2, 4};
+  int copyArr[]{100,200,300, 400, 500, 600, 700, 0, 2, 4};
+  size_t arr_size{sizeof(arr)/sizeof(arr[0])};
+  std::vector<int> vec(arr, arr + arr_size);
+
+  merge(arr, 1, 7, arr_size-1, copyArr);
+  std::sort(vec.begin()+1, vec.end()-1);
+
+  for (size_t i{0}; i<arr_size; ++i){
+    EXPECT_EQ(arr[i], vec[i]) << " with i="<<i; 
+  } 
+}
+
+TEST(CopyArray, NegativeNumbers){
+  int arr[]{-6, -5, -4, -3, -1, -8, -7, -7, -6};
+  int copyArr[]{-6, -5, -4, -3, -1, -8, -7, -7, -6};
+  int copyCheckArr[]{-6, -5, -4, -3, -1, -8, -7, -7, -6};
+  size_t arr_size{sizeof(arr)/sizeof(arr[0])};
+  std::vector<int> vec(arr, arr + arr_size);
+
+  merge(arr, 1, 5, arr_size-1, copyArr);
+  std::sort(vec.begin()+1, vec.end()-1);
+
+  for (size_t i{0}; i<arr_size; ++i){
+    EXPECT_EQ(arr[i], vec[i]) << " with i="<<i; 
+    EXPECT_EQ(copyArr[i], copyCheckArr[i]) << " COPYARRAY FAILS with i="<<i; 
+  }
+
+}
